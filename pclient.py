@@ -2,8 +2,8 @@ import socket,os,sys
 from multiprocessing import Process
 s=socket.socket()
 os.system("clear")
-host = sys.argv[1]
-port = sys.argv[2]
+host = str(sys.argv[1])
+port = int(sys.argv[2])
 nick = str(input("your nick > "))
 rnick = " "
 nickCount=0
