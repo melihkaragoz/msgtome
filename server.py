@@ -20,7 +20,7 @@ def showMsg(min):
 		except:
 			pass
 		else:
-			print(f"{rnick} >> {res}")
+			print(f"\n{rnick} >> {res}")
 
 p = Process(target=showMsg,args=('5'))
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
