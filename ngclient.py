@@ -2,8 +2,10 @@ import socket,os,sys
 from multiprocessing import Process
 s=socket.socket()
 os.system("clear")
-host=str(sys.argv[1])
-port=int(sys.argv[2])
+#host=str(sys.argv[1])
+#port=int(sys.argv[2])
+host=str(input("host : "))
+port=int(input("port : "))
 nick = str(input("your nick > "))
 _help = """
 			Sunucuya hosgeldiniz...
