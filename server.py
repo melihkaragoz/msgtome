@@ -1,5 +1,6 @@
 import socket,os
 from multiprocessing import Process
+from time import sleep
 
 os.system("clear")
 host="127.0.0.1"
@@ -23,6 +24,8 @@ def showMsg(min):
 				rnick = _rnck[1]
 				if(not _hide):
 					print(f"\n  -!!- karsi taraf nick degistirdi, yeni nick : {rnick}  -!!-")
+				else:
+					print(f"{rnick} baglandi.")
 			except:
 				pass
 		else:
@@ -38,9 +41,9 @@ s.listen(5)
 while True:
 	c,addr = s.accept()
 	print(f"yeni baglanti >> {addr}")
-	msg = "rosnet sunucularina hosgeldiniz"
-	c.send(msg.encode('utf-8'))
 	p.start()
+	sleep(0.1)
+	c.send(f"--nick {nick}".encode('utf-8'))
 	c.send(f"--nick {nick} --hidden".encode('utf-8'))
 	while c:
 		gonderMsg = ""
@@ -51,7 +54,8 @@ while True:
 			_nck = gonderMsg.split(" ")
 			nick = _nck[1]
 			c.send(gonderMsg.encode('utf-8'))
-			print("nick degistirilemedi")
+		elif("--join" in gonderMsg):
+			c.send(f"--nick {nick} --hidden".encode('utf-8'))
 		else:
 			c.send(gonderMsg.encode('utf-8'))
 	c.close()
