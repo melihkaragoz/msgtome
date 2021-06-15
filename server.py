@@ -1,4 +1,4 @@
-import socket,os
+import socket,os,base64
 from multiprocessing import Process
 from time import sleep
 
@@ -56,6 +56,9 @@ while True:
 			c.send(gonderMsg.encode('utf-8'))
 		elif("--join" in gonderMsg):
 			c.send(f"--nick {nick} --hidden".encode('utf-8'))
+		elif("--enc" in gonderMsg):
+			gonderMsg = base64.b64encode(bytes(gonderMsg,'utf-8')).decode('utf-8')
+			c.send(gonderMsg.encode('utf-8'))
 		else:
 			c.send(gonderMsg.encode('utf-8'))
 	c.close()

@@ -1,4 +1,4 @@
-import socket,os
+import socket,os,base64
 from multiprocessing import Process
 s=socket.socket()
 os.system("clear")
@@ -64,6 +64,9 @@ while True:
 			print("nick degistirilemedi")
 	elif("--help" in gonderMsg):
 		print(_help)
+	elif("--enc" in gonderMsg):
+		gonderMsg = base64.b64encode(bytes(gonderMsg,'utf-8')).decode('utf-8')
+		s.send(gonderMsg.encode('utf-8'))
 	else:
 		s.send(gonderMsg.encode('utf-8'))
 

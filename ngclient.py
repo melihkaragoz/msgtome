@@ -1,11 +1,9 @@
-import socket,os,sys
+import socket,os,sys,base64
 from multiprocessing import Process
 s=socket.socket()
 os.system("clear")
-#host=str(sys.argv[1])
-#port=int(sys.argv[2])
-host=str(input("host : "))
-port=int(input("port : "))
+host=str(input("host > "))
+port=int(input("port > "))
 nick = str(input("your nick > "))
 _help = """
 			Sunucuya hosgeldiniz...
@@ -68,6 +66,9 @@ while True:
 			print("nick degistirilemedi")
 	elif("--help" in gonderMsg):
 		print(_help)
+	elif("--enc" in gonderMsg):
+		gonderMsg = base64.b64encode(bytes(gonderMsg,'utf-8')).decode("utf-8")
+		s.send(gonderMsg.encode('utf-8'))
 	else:
 		s.send(gonderMsg.encode('utf-8'))
 
