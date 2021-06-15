@@ -69,6 +69,7 @@ while True:
 	elif("--enc" in gonderMsg):
 		gonderMsg = base64.b64encode(bytes(gonderMsg,'utf-8')).decode("utf-8")
 		s.send(gonderMsg.encode('utf-8'))
+		print(f"gonderilen mesaj >> {gonderMsg}")
 	else:
 		s.send(gonderMsg.encode('utf-8'))
 
